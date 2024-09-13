@@ -23,7 +23,8 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/aws_ec2.pem ${{ secrets.AWS_EC2_USER }}@${{ secrets.AWS_EC2_HOST }} << 'EOF'
           ls
-          cd /web-dev
+          cd ~/web-dev
           ls
-          cd /ayudantia-03
+          cd ~/web-dev/ayudantia-03
+          ls
         EOF
