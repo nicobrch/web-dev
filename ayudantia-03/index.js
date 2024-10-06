@@ -26,10 +26,6 @@ app.engine(
 app.set("view engine", "handlebars");
 app.set("views", "./views");
 
-// Credentials
-const validUsername = "user123";
-const validPassword = "password123";
-
 // Routes
 app.get("/", (req, res) => {
   res.render("login");
@@ -38,6 +34,8 @@ app.get("/", (req, res) => {
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
+  const validUsername = "admin";
+  const validPassword = "admin";
   // Validate the username and password
   if (username === validUsername && password === validPassword) {
     res.redirect("/success");
@@ -47,7 +45,7 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/success", (req, res) => {
-  res.render("success", { message: "Logged In" });
+  res.render("success", { message: "Iniciado con Éxito" });
 });
 
 app.get("/failure", (req, res) => {
