@@ -1,17 +1,15 @@
 import sqlite3 from "sqlite3";
 
-const dbPromise = open({
-  filename: './db.sqlite',
-  driver: sqlite3.Database
+const DB_SOURCE = "db.sqlite"
+
+const db = new sqlite3.Database(DB_SOURCE, async (err) => {
+  if (err) throw err;
+  console.log(`Connected to ${DB_SOURCE} database 🎉`);
+  initDb();
 });
 
-const initDB = async () => {
-  const db = await dbPromise;
-  await db.exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)');
-};
-
-initDB().then(r => console.log(r));
-
-const db = await dbPromise;
+const initDb = () => {
+  db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)');
+}
 
 export default db;
