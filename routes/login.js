@@ -4,6 +4,13 @@ import { getUser } from "../services/user.service.js"
 
 const router = express.Router();
 
+router.get("/", (req, res) => {
+  res.render("login", {
+    layout: "login",
+    title: "Login",
+  });
+});
+
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
 
