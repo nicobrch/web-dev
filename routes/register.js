@@ -4,6 +4,13 @@ import { createUser } from "../services/user.service.js"
 
 const router = express.Router();
 
+router.get("/", (req, res) => {
+  res.render("register", {
+    layout: "login",
+    title: "Register",
+  });
+});
+
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
 
