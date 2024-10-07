@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import loginRoutes from "./routes/login.js";
 import registerRoutes from "./routes/register.js";
+import indexRoutes from "./routes/index.js"
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -21,12 +22,15 @@ app.engine(
   "handlebars",
   handlebars.engine({
     defaultLayout: "main",
+    layoutsDir: __dirname + "/views/layouts",
+    partialsDir: __dirname + "/views/partials"
   })
 );
 app.set("view engine", "handlebars");
 app.set("views", "./views");
 
 // Routes
+app.use("/", indexRoutes);
 app.use("/login", loginRoutes);
 app.use("/register", registerRoutes);
 
