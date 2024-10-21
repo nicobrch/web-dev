@@ -48,10 +48,9 @@ app.get("/", async (req, res) => {
   });
 });
 
-app.get("/carrito", (req, res) => {
-  res.render("carrito", {
-    title: "Carrito",
-  });
+// API Routes
+app.get("/api/helloworld", (req, res) => {
+  return res.status(200).send("Hello World!");
 });
 
 app.post("/api/add/cart", async (req, res) => {

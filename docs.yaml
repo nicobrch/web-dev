@@ -1,0 +1,91 @@
+openapi: 3.0.0
+info:
+  title: Shopping Cart API
+  description: This is a simple shopping cart API with user management.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /:
+    get:
+      summary: Fetch Home Page Data
+      description: Returns a list of products and a user with id 1.
+      responses:
+        200:
+          description: OK
+          content:
+            text/html:
+              schema:
+                type: string
+  /api/helloworld:
+    get:
+      summary: Fetch Hello World
+      description: Returns a Hello World message.
+      responses:
+        200:
+          description: OK
+          content:
+            text/html:
+              schema:
+                type: string
+  /api/add/cart:
+    post:
+      summary: Add Product to Cart
+      description: Add a product to the user's shopping cart.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  example: 1
+                productId:
+                  type: integer
+                  example: 2
+                quantity:
+                  type: integer
+                  example: 3
+      responses:
+        200:
+          description: Product added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Producto agregado al carrito con éxito
+        400:
+          description: Bad request - Missing fields, insufficient stock, or insufficient wallet balance
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No hay stock suficiente
+        404:
+          description: User or product not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Usuario no encontrado
+        500:
+          description: Server error - Failed to insert into cart or update stock/wallet
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Error al insertar a la tabla carrito
