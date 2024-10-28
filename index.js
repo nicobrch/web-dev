@@ -3,6 +3,7 @@ import express from 'express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { neon } from '@neondatabase/serverless';
+import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { cartRouter } from "./routes/cart.js";
 import { productRouter } from "./routes/product.js";
@@ -19,6 +20,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
